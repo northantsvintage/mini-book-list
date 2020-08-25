@@ -11,8 +11,15 @@ export default class Booklist extends Component {
     };
   }
 
-  handleDelete = () => {
-    console.log("I am from parent component");
+  handleDelete = (id) => {
+    // all the books that dont have this id, return them; that is how it is the targeted one deleted
+
+    const sortedBooks = this.state.books.filter((item) => item.id !== id);
+    console.log(sortedBooks);
+    // filter it with setState, that is new state after clicking on the button
+    this.setState({
+      books: sortedBooks,
+    });
   };
 
   render() {
