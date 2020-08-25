@@ -5,14 +5,29 @@ export default class Book extends Component {
     super(props);
     this.state = {
       count: 1,
+      showInfo: true,
     };
   }
+
+  handleInfo = () => {
+    this.setState({
+      showInfo: !this.state.showInfo,
+    });
+  };
 
   render() {
     // console.log(this.props);
 
     const { id, img, title, author } = this.props.info;
     const { handleDelete } = this.props;
+
+    const checkInfo = (info) => {
+      if (info === true) {
+        return <p>More info about the book</p>;
+      } else {
+        return null;
+      }
+    };
 
     return (
       <article className="book">
@@ -24,6 +39,15 @@ export default class Book extends Component {
           <button type="button" onClick={() => handleDelete(id)}>
             Delete Me
           </button>
+          <button type="button" onClick={this.handleInfo}>
+            Toggle Info
+          </button>
+          {/* conditional rendering: first way */}
+          {/* {this.state.showInfo && <p>More info about the</p>} */}
+          {/* ternary operator: second way */}
+          {/* {this.state.showInfo ? <p>More info about the book</p> : null} */}
+          {/* functional rendering: third way */}
+          {checkInfo(this.state.showInfo)}
         </div>
       </article>
     );
