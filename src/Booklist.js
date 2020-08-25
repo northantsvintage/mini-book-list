@@ -11,6 +11,10 @@ export default class Booklist extends Component {
     };
   }
 
+  handleDelete = () => {
+    console.log("I am from parent component");
+  };
+
   render() {
     // const books = this.state.books.map((item) => item.book);
     // console.log(books);
@@ -18,7 +22,7 @@ export default class Booklist extends Component {
       <section>
         <h3>Booklist</h3>
         {this.state.books.map((item) => (
-          <Book key={item.id} info={item} />
+          <Book key={item.id} info={item} handleDelete={this.handleDelete} />
         ))}
       </section>
     );
